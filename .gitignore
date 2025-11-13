@@ -1,0 +1,9 @@
+# Ignore everything by default
+/*
+
+# Allow this .gitignore to be tracked
+!.gitignore
+
+# Only include the Assets folder contents
+!/Assets/
+!/Assets/**
