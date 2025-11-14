@@ -121,7 +121,9 @@ public class Ship : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
         {
+            GameTimer.Instance.StopStopwatch();
             Destroy(gameObject);
         }
+        
     }
 }

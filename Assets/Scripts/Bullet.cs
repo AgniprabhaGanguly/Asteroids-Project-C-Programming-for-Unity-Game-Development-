@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class Bullet : MonoBehaviour
 {
     Timer destroyTimer;
@@ -31,9 +31,36 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            Destroy(other.gameObject);
-            GameObject explosion = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            GameObject asteroid = other.gameObject;
+
+            if (asteroid.transform.localScale.Equals(new Vector3(0.7f, 0.7f, 0.7f)))
+            {
+                Destroy(asteroid);
+                GameObject explosion = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+                Destroy(gameObject); // this destroys bullet
+            }
+            else //split asteroid
+            {
+                GameObject ast1 = Instantiate(asteroid, asteroid.transform.position, Quaternion.identity);
+                ast1.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                
+                GameObject ast2 = Instantiate(asteroid, asteroid.transform.position, Quaternion.identity);
+                ast2.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                
+                Destroy(asteroid); // destroy asteroid
+                Destroy(gameObject); // destroy bullet
+                
+                //add force to the new asteroids
+                float directionAngle = Random.Range(75, 105) * Mathf.Deg2Rad;
+                Vector2 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
+                
+                ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
+                
+                directionAngle = Random.Range(255, 285) * Mathf.Deg2Rad;
+                directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
+                
+                ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
+            }
         }
     }
     

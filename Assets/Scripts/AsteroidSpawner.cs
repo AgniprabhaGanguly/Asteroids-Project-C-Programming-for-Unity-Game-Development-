@@ -97,7 +97,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 90 for up)
                 directionAngle = Random.Range(75, 105) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(2f, 4f);
+                speed = Random.Range(1f, 2f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Down:
@@ -105,7 +105,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 270 for down)
                 directionAngle = Random.Range(255, 285) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(2f, 4f);
+                speed = Random.Range(1f, 2f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Left:
@@ -113,12 +113,12 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 180 for left)
                 directionAngle = Random.Range(165, 195) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(2f, 4f);
+                speed = Random.Range(1f, 2f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Right:
                 asteroid.transform.position = new Vector3(ScreenUtils.ScreenLeft - colliderRadius, 0);
-                // throw asteroid with a random velocity in a 30deg arc (base is 0 for down)
+                // throw asteroid with a random velocity in a 30deg arc (base is 0 for right)
                 directionAngle = Random.Range(-15, 15) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 speed = Random.Range(2f, 4f);
