@@ -46,7 +46,11 @@ This is a space-themed shooter game project, built as part of my coursework for 
 - Make it so bullets don't collide with each other
 
 ## Iteration 6: The End of Asteroids (YET TO DO)
-
+- Make bullets split asteroids into two smaller asteroids
+- Make bullets destroy asteroids that are less than half the original size
+- Add a game timer that displays how long the player has been playing
+- Stop the game timer when the ship is destroyed
+- Play sound effects when the player shoots a bullet, when a bullet collides with an asteroid, and when the ship is destroyed
 ---
 
 ## Link to itch.io to play the game
