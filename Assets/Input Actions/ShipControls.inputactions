@@ -7,7 +7,7 @@
             "id": "c33c5ca0-31ec-4d44-a2b0-546c5b9345bb",
             "actions": [
                 {
-                    "name": "Thrust",
+                    "name": "forward",
                     "type": "Button",
                     "id": "15481ef6-9e19-40a2-96a4-933840f5c79d",
                     "expectedControlType": "",
@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RotateLeft",
+                    "name": "left",
                     "type": "Button",
                     "id": "ca2a3d3f-b39d-48c7-bf41-2a8bd1d11db0",
                     "expectedControlType": "",
@@ -25,7 +25,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RotateRight",
+                    "name": "right",
                     "type": "Button",
                     "id": "d9fdb23f-659b-4ee8-8035-112ef1e6fce9",
                     "expectedControlType": "",
@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Brake",
+                    "name": "backward",
                     "type": "Button",
                     "id": "6c087db6-fd03-44d6-b038-a8b8b92a7656",
                     "expectedControlType": "",
@@ -60,7 +60,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Thrust",
+                    "action": "forward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -71,7 +71,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateLeft",
+                    "action": "left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -82,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateRight",
+                    "action": "right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -93,7 +93,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Brake",
+                    "action": "backward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

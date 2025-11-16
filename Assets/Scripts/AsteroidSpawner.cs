@@ -27,7 +27,6 @@ public class AsteroidSpawner : MonoBehaviour
     */
     
     Timer spawnTimer;
-    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,7 +43,7 @@ public class AsteroidSpawner : MonoBehaviour
         */
         
         spawnTimer = gameObject.AddComponent<Timer>();
-        spawnTimer.Duration = 6f;
+        spawnTimer.Duration = 5f;
         spawnTimer.Run();
         
         SpawnAsteroid(Direction.Up);
@@ -58,10 +57,18 @@ public class AsteroidSpawner : MonoBehaviour
     {
         if (spawnTimer.Finished)
         {
-            SpawnAsteroid(Direction.Up);
-            SpawnAsteroid(Direction.Down);
-            SpawnAsteroid(Direction.Left);
-            SpawnAsteroid(Direction.Right);
+            int direction = Random.Range(1, 3);
+            switch (direction)
+            {
+                case 1:
+                    SpawnAsteroid(Direction.Up);
+                    SpawnAsteroid(Direction.Down);
+                    break;
+                case 2:
+                    SpawnAsteroid(Direction.Left);
+                    SpawnAsteroid(Direction.Right);
+                    break;
+            }
             spawnTimer.Run();
         }
     }
@@ -97,7 +104,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 90 for up)
                 directionAngle = Random.Range(75, 105) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(1f, 2f);
+                speed = Random.Range(0.5f, 1.5f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Down:
@@ -105,7 +112,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 270 for down)
                 directionAngle = Random.Range(255, 285) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(1f, 2f);
+                speed = Random.Range(0.5f, 1.5f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Left:
@@ -113,7 +120,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 180 for left)
                 directionAngle = Random.Range(165, 195) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(1f, 2f);
+                speed = Random.Range(0.5f, 1.5f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
             case Direction.Right:
@@ -121,7 +128,7 @@ public class AsteroidSpawner : MonoBehaviour
                 // throw asteroid with a random velocity in a 30deg arc (base is 0 for right)
                 directionAngle = Random.Range(-15, 15) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
-                speed = Random.Range(2f, 4f);
+                speed = Random.Range(0.5f, 1.5f);
                 asteroidRb.AddForce(directionVec * speed, ForceMode2D.Impulse);
                 break;
         }

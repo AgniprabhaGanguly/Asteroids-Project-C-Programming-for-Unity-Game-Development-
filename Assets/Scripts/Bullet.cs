@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         {
             GameObject asteroid = other.gameObject;
 
-            if (asteroid.transform.localScale.Equals(new Vector3(0.7f, 0.7f, 0.7f)))
+            if (asteroid.transform.localScale.Equals(new Vector3(1f, 1f, 0f)))
             {
                 Destroy(asteroid);
                 GameObject explosion = Instantiate(prefabAsteroidExplosion, asteroid.transform.position, Quaternion.identity);
@@ -45,10 +45,10 @@ public class Bullet : MonoBehaviour
             else //split asteroid
             {
                 GameObject ast1 = Instantiate(asteroid, asteroid.transform.position, Quaternion.identity);
-                ast1.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                ast1.transform.localScale = new Vector3(1f, 1f, 0f);
                 
                 GameObject ast2 = Instantiate(asteroid, asteroid.transform.position, Quaternion.identity);
-                ast2.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                ast2.transform.localScale = new Vector3(1f, 1f, 0f);
                 
                 Destroy(asteroid); // destroy asteroid
                 Destroy(gameObject); // destroy bullet
