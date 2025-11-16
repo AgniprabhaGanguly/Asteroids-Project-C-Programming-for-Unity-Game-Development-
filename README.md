@@ -1,5 +1,5 @@
-# Asteroids-Project-C-Programming-for-Unity-Game-Development-
-_A C Programming Project for Unity Game Development (Coursera – University of Colorado)_
+# Asteroids-Project-C#-Programming-for-Unity-Game-Development-
+_A C# Programming Project for Unity Game Development (Coursera – University of Colorado)_
 
 This is a space-themed shooter game project, built as part of my coursework for the “C Programming for Unity Game Development” specialization offered on Coursera by the University of Colorado. The goal of the project was to implement the classic Asteroids game in multiple iterations while learning game programming fundamentals and Unity integration.
 
