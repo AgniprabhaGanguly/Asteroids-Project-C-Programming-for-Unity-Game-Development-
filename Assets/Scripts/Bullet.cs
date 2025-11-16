@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 public class Bullet : MonoBehaviour
 {
     Timer destroyTimer;
-    [SerializeField] private GameObject prefabExplosion;
+    [SerializeField] private GameObject prefabAsteroidExplosion;
+    [SerializeField] private AudioClip asteroidExplosionFX;
     
     Vector3 position;
 
@@ -36,7 +38,8 @@ public class Bullet : MonoBehaviour
             if (asteroid.transform.localScale.Equals(new Vector3(0.7f, 0.7f, 0.7f)))
             {
                 Destroy(asteroid);
-                GameObject explosion = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+                GameObject explosion = Instantiate(prefabAsteroidExplosion, asteroid.transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySoundFX(asteroidExplosionFX, asteroid.transform, 1f);
                 Destroy(gameObject); // this destroys bullet
             }
             else //split asteroid
@@ -51,15 +54,15 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject); // destroy bullet
                 
                 //add force to the new asteroids
-                float directionAngle = Random.Range(75, 105) * Mathf.Deg2Rad;
+                float directionAngle = Random.Range(0,360) * Mathf.Deg2Rad;
                 Vector2 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 
                 ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
                 
-                directionAngle = Random.Range(255, 285) * Mathf.Deg2Rad;
+                directionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 
-                ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
+                ast2.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
             }
         }
     }

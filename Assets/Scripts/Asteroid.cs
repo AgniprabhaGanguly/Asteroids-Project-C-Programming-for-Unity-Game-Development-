@@ -4,7 +4,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     Vector3 position;
-    private CircleCollider2D collider;
+    private CircleCollider2D astCollider;
 
     private bool spawnProtection = true;
     private float spawnProtectionTimer = 0.0f;
@@ -12,7 +12,7 @@ public class Asteroid : MonoBehaviour
 
     private void Awake()
     {
-        collider = GetComponent<CircleCollider2D>();
+        astCollider = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class Asteroid : MonoBehaviour
     {
         if (spawnProtection) return;
         position = transform.position;
-        float asteroidRadius = collider.radius;
+        float asteroidRadius = astCollider.radius;
         if (position.x - asteroidRadius  < ScreenUtils.ScreenLeft || position.x + asteroidRadius > ScreenUtils.ScreenRight)
         {
             transform.position = new Vector3(-position.x, position.y, position.z);

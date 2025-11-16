@@ -169,4 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9f67c43701436459bc09919d086a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  prefabExplosion: {fileID: 1807922548284102603, guid: fe9222287d634c24f8b2cdf67fd702c3, type: 3}
+  prefabAsteroidExplosion: {fileID: 1807922548284102603, guid: fe9222287d634c24f8b2cdf67fd702c3, type: 3}
+  asteroidExplosionFX: {fileID: 8300000, guid: f631f333cc6eb694ea9212a470d6af64, type: 3}

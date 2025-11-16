@@ -20,7 +20,11 @@ public class Ship : MonoBehaviour
     [SerializeField] float brakeForce = 1.5f;
     [SerializeField] float rotateSpeed = 1f;
     [SerializeField] float bulletVelocity = 20f;
-
+    
+    [SerializeField] private GameObject shipExplosion;
+    [SerializeField] private AudioClip shipExplosionFX;
+    [SerializeField] private AudioClip bulletFiringFX;
+    
     private CircleCollider2D _collider;
     private Vector3 position;
     private void Awake()
@@ -86,6 +90,7 @@ public class Ship : MonoBehaviour
                 
                 //Instantiate bullet
                 GameObject bullet = (GameObject)Instantiate(prefabBullet, bulletPosition, transform.rotation);
+                AudioManager.Instance.PlaySoundFX(bulletFiringFX, transform, 0.3f);
                 
                 //Add force to bullet
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
@@ -122,6 +127,8 @@ public class Ship : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
         {
             GameTimer.Instance.StopStopwatch();
+            Instantiate(shipExplosion, transform.position, Quaternion.identity);
+            AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
             Destroy(gameObject);
         }
         

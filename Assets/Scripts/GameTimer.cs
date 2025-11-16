@@ -4,7 +4,7 @@ using System;
 
 public class GameTimer : MonoBehaviour
 {
-    public static GameTimer Instance { get; private set; }
+    public static GameTimer Instance;
 
     float currentTime;
     bool isRunning;
@@ -15,12 +15,6 @@ public class GameTimer : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        }
-        else if (Instance != this)
-        {
-            // Keep the first instance
-            Destroy(this);
-            return;
         }
     }
 
