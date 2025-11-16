@@ -56,9 +56,10 @@ This is a space-themed shooter game project, built as part of my coursework for 
 
 ## Iteration 7: 
 - fixed movement feel by :
-  - ship stops after lifting off the movement button. There is no need to press S to brake.
-  - ship now supports backward and sideways movement
-  - ship now supports rotation and shooting using the mouse.
+  - ship brakes after lifting off the movement button. There is no need to press S to brake.
+  - ship now move backwards by pressing S
+- balanced out asteroid spawning. Instead of spawning from all 4 directions, it now spawns from 2 directions, either up & down or left & right.
+- added a fixed reticle with a fixed distance from a ship to help aim better.
 ---
 
 ## Features (Final Version)
