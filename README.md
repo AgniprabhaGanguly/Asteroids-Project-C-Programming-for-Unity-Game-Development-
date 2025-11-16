@@ -7,7 +7,7 @@ This is a space-themed shooter game project, built as part of my coursework for 
 [Programming for Unity Game Development Specialization — Coursera](https://www.coursera.org/specializations/programming-unity-game-development)
 
 ## Itch.io Link
-
+(itch.io link)
 
 ## Table of Contents
 
@@ -55,12 +55,10 @@ This is a space-themed shooter game project, built as part of my coursework for 
 ## AFTER COURSE INSTRUCTIONS ENDED, I POLISHED THE GAME FEEL BY PLAYTESTING
 
 ## Iteration 7: 
----
-
-## Link to itch.io to play the game
-
-(itch.io link)
-
+- fixed movement feel by :
+  - ship stops after lifting off the movement button. There is no need to press S to brake.
+  - ship now supports backward and sideways movement
+  - ship now supports rotation and shooting using the mouse.
 ---
 
 ## Features (Final Version)
