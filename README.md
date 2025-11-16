@@ -7,7 +7,7 @@ This is a space-themed shooter game project, built as part of my coursework for 
 [Programming for Unity Game Development Specialization — Coursera](https://www.coursera.org/specializations/programming-unity-game-development)
 
 ## Itch.io Link
-
+(itch.io link)
 
 ## Table of Contents
 
@@ -55,12 +55,11 @@ This is a space-themed shooter game project, built as part of my coursework for 
 ## AFTER COURSE INSTRUCTIONS ENDED, I POLISHED THE GAME FEEL BY PLAYTESTING
 
 ## Iteration 7: 
----
-
-## Link to itch.io to play the game
-
-(itch.io link)
-
+- fixed movement feel by :
+  - ship brakes after lifting off the movement button. There is no need to press S to brake.
+  - ship now move backwards by pressing S
+- balanced out asteroid spawning. Instead of spawning from all 4 directions, it now spawns from 2 directions, either up & down or left & right.
+- added a fixed reticle with a fixed distance from a ship to help aim better.
 ---
 
 ## Features (Final Version)
