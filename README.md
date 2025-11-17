@@ -62,6 +62,11 @@ This is a space-themed shooter game project, built as part of my coursework for 
 - added a fixed reticle with a fixed distance from a ship to help aim better.
 ---
 
+## Iteration 8:
+- bullets no longer screen wrap
+- added triple-shot power-up based on score accumulated
+- added game UI: Main Menu Screen & Game Over screen (shows time survived, total score, retry, return to main menu options) 
+
 ## Features (Final Version)
 
 
