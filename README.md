@@ -64,7 +64,10 @@ This is a space-themed shooter game project, built as part of my coursework for 
 ## Iteration 8:
 - bullets no longer screen wrap
 - added triple-shot power-up based on score accumulated
-- added game UI: Main Menu Screen & Game Over screen (shows time survived, total score, retry, return to main menu options) 
+- Problem faced & solutions when adding triple-shot power-up feature:
+  - Accessing the duration of the triple-shot with ship.cs script which shoots the bullets. Fixed by adding a tripleshot.cs script to the gameobject (adding screen wrap + duration)
+  - Using a boolean such that multiple power shots aren't instantiated
+  - Multiple bullet collides with a single asteroid making it split more than once. Fix: Added collision code on Asteroid instead of bullet (made a bool to make it destroy once)
 
 ## Features (Final Version)
 
