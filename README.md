@@ -62,7 +62,6 @@ This is a space-themed shooter game project, built as part of my coursework for 
 - added a fixed reticle with a fixed distance from a ship to help aim better.
 
 ## Iteration 8:
-- bullets no longer screen wrap
 - added triple-shot power-up based on score accumulated
 - Problem faced & solutions when adding triple-shot power-up feature:
   - Accessing the duration of the triple-shot with ship.cs script which shoots the bullets. Fixed by adding a tripleshot.cs script to the gameobject (adding screen wrap + duration)
