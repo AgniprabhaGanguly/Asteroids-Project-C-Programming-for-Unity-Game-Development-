@@ -43,7 +43,7 @@ public class AsteroidSpawner : MonoBehaviour
         */
         
         spawnTimer = gameObject.AddComponent<Timer>();
-        spawnTimer.Duration = 5f;
+        spawnTimer.Duration = 6f;
         spawnTimer.Run();
         
         SpawnAsteroid(Direction.Up);
@@ -86,7 +86,7 @@ public class AsteroidSpawner : MonoBehaviour
     void SpawnAsteroid(Direction moveDirection)
     {
         // instantiate
-        GameObject asteroid = Instantiate<GameObject>(asteroidPrefab, Vector3.zero, Quaternion.identity);
+        GameObject asteroid = Instantiate(asteroidPrefab, Vector3.zero, Quaternion.identity);
         float directionAngle, speed;
         Vector2 directionVec;
         Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();

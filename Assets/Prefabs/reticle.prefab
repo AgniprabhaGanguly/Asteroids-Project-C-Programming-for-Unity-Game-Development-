@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8017322182823098318}
   - component: {fileID: 8582790030776859908}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

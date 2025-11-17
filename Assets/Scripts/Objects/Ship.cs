@@ -11,34 +11,42 @@ public class Ship : MonoBehaviour
     private InputAction strafeRight;
     private InputAction moveBackward;
     private InputAction shootInput;
-
+    
+    
+    //RETICLE
     private GameObject reticleObj;
     [SerializeField] GameObject reticle;
     [SerializeField] float reticalDistance;
 
+    //BULLET
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private float rate_of_fire;
     
+    // SHIP PHYSICS
     [SerializeField] float thrustForce = 3f;
     [SerializeField] private float brakeForce = 8f;
     [SerializeField] float maxSpeed = 4f;
     [SerializeField] float rotateSpeed = 1f;
     [SerializeField] float bulletVelocity = 20f;
     
+    // AUDIO & EFFECTS
     [SerializeField] private GameObject shipExplosion;
     [SerializeField] private AudioClip shipExplosionFX;
     [SerializeField] private AudioClip bulletFiringFX;
     
+    //POWERUPS
+    bool tripleShotActivated = false;
+    Timer tripleShotTimer;
+    
     private CircleCollider2D _collider;
     private Vector3 position;
-
-    private bool keyIsPressed = false;
-
+    
     private void Awake()
     {
         shipRb = gameObject.GetComponent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
         shootDelay = gameObject.AddComponent<Timer>();
+        tripleShotTimer = gameObject.AddComponent<Timer>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,7 +73,8 @@ public class Ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rotationRadian = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+        // after collision ship does not keep rotating due to the angular velocity exerted
+        shipRb.angularVelocity = 0f;
         
         // Read inputs this frame
         bool forward = moveForward.IsPressed();
@@ -123,18 +132,21 @@ public class Ship : MonoBehaviour
         {
             if (shootDelay.Finished)
             {
-                // Find position of bullet (depend on where ship is rotated - transform.right give gameobject's right takes into account the rotation object has made)
-                Vector3 bulletPosition = transform.position + transform.right * (_collider.radius + 0.5f);
-                
-                //Instantiate bullet
-                GameObject bullet = (GameObject)Instantiate(prefabBullet, bulletPosition, transform.rotation);
-                AudioManager.Instance.PlaySoundFX(bulletFiringFX, transform, 0.3f);
-                
-                //Add force to bullet
-                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-                bulletRb.AddForce(transform.right * bulletVelocity * Time.deltaTime, ForceMode2D.Impulse);
-                shootDelay.Run();  
+                 ShootBullet();
+                 if (tripleShotActivated)
+                 {
+                     ShootBullet(-15);
+                     ShootBullet(15);
+                 }
+                 shootDelay.Run();
+                 
             }
+        }
+        
+        // POWER UPS MANAGEMENT
+        if (tripleShotTimer.Finished && tripleShotActivated)
+        {
+            tripleShotActivated = false;
         }
     }
 
@@ -168,13 +180,57 @@ public class Ship : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
+        if (other.gameObject.CompareTag("Asteroid"))
         {
-            GameTimer.Instance.StopStopwatch();
-            Instantiate(shipExplosion, transform.position, Quaternion.identity);
-            AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
-            Destroy(gameObject);
+            HealthScript.Instance.TakeDamage(50);
+            if (HealthScript.Instance.Health <= 0)
+            {
+                GameTimer.Instance.StopStopwatch();
+                Instantiate(shipExplosion, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
+                Destroy(gameObject);
+            }
         }
+        else if (other.gameObject.CompareTag("S_Asteroid"))
+        {
+            HealthScript.Instance.TakeDamage(25);
+            if (HealthScript.Instance.Health <= 0)
+            {
+                GameTimer.Instance.StopStopwatch();
+                Instantiate(shipExplosion, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("TripleShot"))
+        {
+            tripleShotTimer.Duration = other.GetComponent<TripleShot>().TripleShotDuration;
+            Destroy(other.gameObject);
+            
+            tripleShotActivated = true;
+            tripleShotTimer.Run();
+        }
+    }
+
+    private void ShootBullet(float angleDeg = 0)
+    {
         
+        // Find position of bullet (depend on where ship is rotated - transform.right give gameobject's right takes into account the rotation object has made)
+        Vector3 bulletPosition = transform.position + transform.right * _collider.radius;
+                
+        //Instantiate bullet
+        GameObject bullet = Instantiate(prefabBullet, bulletPosition, transform.rotation);
+        AudioManager.Instance.PlaySoundFX(bulletFiringFX, transform, 0.3f);
+                
+        //Add force to bullet at an angle
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        
+        // Quaternion.AngleAxis rotates angle (angleDeg) about axis (Vector3.forward ie z axis) with base vector (transform.right)
+        Vector2 directionVec = Quaternion.AngleAxis(angleDeg, Vector3.forward) * transform.right;
+        bulletRb.AddForce(directionVec * bulletVelocity * Time.deltaTime, ForceMode2D.Impulse);
     }
 }
