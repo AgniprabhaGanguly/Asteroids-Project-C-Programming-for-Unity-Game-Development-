@@ -1,10 +1,10 @@
-# Asteroids-Project-C-Programming-for-Unity-Game-Development-
-_A C Programming Project for Unity Game Development (Coursera – University of Colorado)_
+# Asteroids-Project-C#-Programming-for-Unity-Game-Development-
+_A C# Programming Project for Unity Game Development (Coursera – University of Colorado)_
 
 This is a space-themed shooter game project, built as part of my coursework for the “C Programming for Unity Game Development” specialization offered on Coursera by the University of Colorado. The goal of the project was to implement the classic Asteroids game in multiple iterations while learning game programming fundamentals and Unity integration.
 
 ## Course Link
-[Programming for Unity Game Development Specialization — Coursera](https://www.coursera.org/specializations/programming-unity-game-development)
+[C# Programming for Unity Game Development Specialization — Coursera](https://www.coursera.org/specializations/programming-unity-game-development)
 
 ## Itch.io Link
 (itch.io link)
@@ -60,7 +60,13 @@ This is a space-themed shooter game project, built as part of my coursework for 
   - ship now move backwards by pressing S
 - balanced out asteroid spawning. Instead of spawning from all 4 directions, it now spawns from 2 directions, either up & down or left & right.
 - added a fixed reticle with a fixed distance from a ship to help aim better.
----
+
+## Iteration 8:
+- added triple-shot power-up based on score accumulated
+- Problem faced & solutions when adding triple-shot power-up feature:
+  - Accessing the duration of the triple-shot with ship.cs script which shoots the bullets. Fixed by adding a tripleshot.cs script to the gameobject (adding screen wrap + duration)
+  - Using a boolean such that multiple power shots aren't instantiated
+  - Multiple bullet collides with a single asteroid making it split more than once. Fix: Added collision code on Asteroid instead of bullet (made a bool to make it destroy once)
 
 ## Features (Final Version)
 
