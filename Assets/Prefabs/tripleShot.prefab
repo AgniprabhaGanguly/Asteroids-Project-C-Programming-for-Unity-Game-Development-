@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251c026e9cb2c18429f6f52a996ec153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TripleShot
-  <TripleShotDuration>k__BackingField: 10
+  <TripleShotDuration>k__BackingField: 5

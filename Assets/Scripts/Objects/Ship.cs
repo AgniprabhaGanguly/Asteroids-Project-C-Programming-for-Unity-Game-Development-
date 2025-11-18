@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 public class Ship : MonoBehaviour
 {
     private Timer shootDelay;
@@ -11,6 +12,7 @@ public class Ship : MonoBehaviour
     private InputAction strafeRight;
     private InputAction moveBackward;
     private InputAction shootInput;
+    private InputAction tripleShotInput;
     
     
     //RETICLE
@@ -37,6 +39,8 @@ public class Ship : MonoBehaviour
     //POWERUPS
     bool tripleShotActivated = false;
     Timer tripleShotTimer;
+    float tripleShotDuration;
+    public TextMeshProUGUI tripleShotCount;
     
     private CircleCollider2D _collider;
     private Vector3 position;
@@ -68,6 +72,8 @@ public class Ship : MonoBehaviour
         strafeRight.Enable();
         shootInput = InputSystem.actions.FindAction("Shoot");
         shootInput.Enable();
+        tripleShotInput = InputSystem.actions.FindAction("tripleShot");
+        tripleShotInput.Enable();
     }
 
     // Update is called once per frame
@@ -132,6 +138,7 @@ public class Ship : MonoBehaviour
         {
             if (shootDelay.Finished)
             {
+                AudioManager.Instance.PlaySoundFX(bulletFiringFX, transform, 0.3f);
                  ShootBullet();
                  if (tripleShotActivated)
                  {
@@ -139,15 +146,21 @@ public class Ship : MonoBehaviour
                      ShootBullet(15);
                  }
                  shootDelay.Run();
-                 
             }
         }
-        
-        // POWER UPS MANAGEMENT
-        if (tripleShotTimer.Finished && tripleShotActivated)
+
+        if (tripleShotInput.WasPressedThisFrame())
         {
-            tripleShotActivated = false;
+            if (int.Parse(tripleShotCount.text.ToString()) > 0)
+            {
+                tripleShotActivated = true;
+                tripleShotCount.text = (int.Parse(tripleShotCount.text) - 1).ToString();
+                tripleShotTimer.Duration = tripleShotDuration;
+                tripleShotTimer.Run();
+            }
         }
+
+        if (tripleShotTimer.Finished) tripleShotActivated = false;
     }
 
     private void updateTriggerPos()
@@ -203,16 +216,16 @@ public class Ship : MonoBehaviour
             }
         }
     }
-
+    
+    //for powerups
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("TripleShot"))
         {
-            tripleShotTimer.Duration = other.GetComponent<TripleShot>().TripleShotDuration;
+            tripleShotDuration = other.GetComponent<TripleShot>().TripleShotDuration;
             Destroy(other.gameObject);
-            
-            tripleShotActivated = true;
-            tripleShotTimer.Run();
+
+            tripleShotCount.text = (int.Parse(tripleShotCount.text) + 1).ToString();
         }
     }
 
@@ -224,7 +237,6 @@ public class Ship : MonoBehaviour
                 
         //Instantiate bullet
         GameObject bullet = Instantiate(prefabBullet, bulletPosition, transform.rotation);
-        AudioManager.Instance.PlaySoundFX(bulletFiringFX, transform, 0.3f);
                 
         //Add force to bullet at an angle
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();

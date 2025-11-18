@@ -26,23 +26,24 @@ public class Bullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        position = transform.position;
-        float bulletHalfLength = GetComponent<CapsuleCollider2D>().size.x / 2;
-        if (position.x - bulletHalfLength  < ScreenUtils.ScreenLeft || position.x + bulletHalfLength > ScreenUtils.ScreenRight)
-        {
-            transform.position = new Vector3(-position.x, position.y, position.z);
-        }
-
-        if (position.y + bulletHalfLength > ScreenUtils.ScreenTop || position.y - bulletHalfLength < ScreenUtils.ScreenBottom)
-        {
-            transform.position = new Vector3(position.x, -position.y, position.z);
-        }
-
-        if ((position.x - bulletHalfLength < ScreenUtils.ScreenLeft || position.x + bulletHalfLength > ScreenUtils.ScreenRight) &&
-            (position.y + bulletHalfLength > ScreenUtils.ScreenTop || position.y - bulletHalfLength < ScreenUtils.ScreenBottom))
-        {
-            transform.position = new Vector3(-position.x, -position.y, position.z);
-        }
+        Destroy(gameObject);
+        // position = transform.position;
+        // float bulletHalfLength = GetComponent<CapsuleCollider2D>().size.x / 2;
+        // if (position.x - bulletHalfLength  < ScreenUtils.ScreenLeft || position.x + bulletHalfLength > ScreenUtils.ScreenRight)
+        // {
+        //     transform.position = new Vector3(-position.x, position.y, position.z);
+        // }
+        //
+        // if (position.y + bulletHalfLength > ScreenUtils.ScreenTop || position.y - bulletHalfLength < ScreenUtils.ScreenBottom)
+        // {
+        //     transform.position = new Vector3(position.x, -position.y, position.z);
+        // }
+        //
+        // if ((position.x - bulletHalfLength < ScreenUtils.ScreenLeft || position.x + bulletHalfLength > ScreenUtils.ScreenRight) &&
+        //     (position.y + bulletHalfLength > ScreenUtils.ScreenTop || position.y - bulletHalfLength < ScreenUtils.ScreenBottom))
+        // {
+        //     transform.position = new Vector3(-position.x, -position.y, position.z);
+        // }
         
     }
     

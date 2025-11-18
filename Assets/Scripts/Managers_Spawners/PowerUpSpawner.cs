@@ -17,7 +17,7 @@ public class PowerUpSpawner : MonoBehaviour
     void Start()
     {
         GameObject tripleShot = Instantiate(tripleShotPrefab, Vector3.zero, Quaternion.identity);
-        tripleShotColliderSize = tripleShot.GetComponent<BoxCollider2D>().bounds.size;
+        tripleShotColliderSize = tripleShot.GetComponent<BoxCollider2D>().bounds.extents;
         Destroy(tripleShot);
         
         tsIsSpawnedOnce = true;
@@ -48,7 +48,7 @@ public class PowerUpSpawner : MonoBehaviour
         int spawnDirectionIndex = Random.Range(0, 4);
         Direction spawnDirection = (Direction)Enum.GetValues(typeof(Direction)).GetValue(spawnDirectionIndex);
 
-        tripleShotColliderSize = tripleShot.GetComponent<BoxCollider2D>().bounds.size;
+        tripleShotColliderSize = tripleShot.GetComponent<BoxCollider2D>().bounds.extents;
         Rigidbody2D rbTripleShot = tripleShot.GetComponent<Rigidbody2D>();
 
         float directionAngle;
@@ -68,39 +68,17 @@ public class PowerUpSpawner : MonoBehaviour
                 rbTripleShot.AddForce(directionVec * 2, ForceMode2D.Impulse);
                 break;
             case Direction.Left:
-                tripleShot.transform.position = new Vector3(0, ScreenUtils.ScreenRight - tripleShotColliderSize.x);
+                tripleShot.transform.position = new Vector3(ScreenUtils.ScreenRight + tripleShotColliderSize.x,0);
                 directionAngle = Random.Range(165, 195) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 rbTripleShot.AddForce(directionVec * 2, ForceMode2D.Impulse);
                 break;
             case Direction.Right:
-                tripleShot.transform.position = new Vector3(0, ScreenUtils.ScreenLeft + tripleShotColliderSize.x);
+                tripleShot.transform.position = new Vector3(ScreenUtils.ScreenLeft - tripleShotColliderSize.x, 0);
                 directionAngle = Random.Range(-15, 15) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 rbTripleShot.AddForce(directionVec * 2, ForceMode2D.Impulse);
                 break;
-        }
-    }
-
-    Vector3 position;
-    private void OnBecameInvisible()
-    {
-        position = transform.position;
-        
-        if (position.x - tripleShotColliderSize.x  < ScreenUtils.ScreenLeft || position.x + tripleShotColliderSize.x > ScreenUtils.ScreenRight)
-        {
-            transform.position = new Vector3(-position.x, position.y, position.z);
-        }
-
-        if (position.y + tripleShotColliderSize.y > ScreenUtils.ScreenTop || position.y - tripleShotColliderSize.y < ScreenUtils.ScreenBottom)
-        {
-            transform.position = new Vector3(position.x, -position.y, position.z);
-        }
-
-        if ((position.x - tripleShotColliderSize.x < ScreenUtils.ScreenLeft || position.x + tripleShotColliderSize.x > ScreenUtils.ScreenRight) &&
-            (position.y + tripleShotColliderSize.y > ScreenUtils.ScreenTop || position.y - tripleShotColliderSize.y < ScreenUtils.ScreenBottom))
-        {
-            transform.position = new Vector3(-position.x, -position.y, position.z);
         }
     }
 }

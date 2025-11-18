@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour
                 totalSeconds = value;
             }
         }
+        get {return totalSeconds;}
     }
 
     public bool Finished

@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "tripleShot",
+                    "type": "Button",
+                    "id": "28e772b8-660f-411a-adee-65fc0d0d4e92",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -99,8 +108,8 @@
                 },
                 {
                     "name": "",
-                    "id": "34c81660-967a-4c4c-b08c-91c254dce834",
-                    "path": "<Mouse>/leftButton",
+                    "id": "6858e9e8-b097-40ba-95b4-c5282405cf07",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,12 +119,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6858e9e8-b097-40ba-95b4-c5282405cf07",
-                    "path": "<Keyboard>/space",
+                    "id": "73906d30-7790-43a3-a12b-7e2a426115cd",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "tripleShot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c1adac2-73f6-45b2-8f43-c0a5eaf58af3",
+                    "path": "<Keyboard>/numpad1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "tripleShot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

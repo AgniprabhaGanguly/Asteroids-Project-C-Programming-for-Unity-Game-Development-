@@ -10,6 +10,9 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private GameObject prefabAsteroidExplosion;
     [SerializeField] private AudioClip asteroidExplosionFX;
     
+    [field:SerializeField] public float speedAsteroid { get; set; }
+    [field:SerializeField] public float speedSmallAsteroid { get; set; }
+    
     bool splitOnce = false;
 
     private bool spawnProtection = true;
@@ -67,12 +70,12 @@ public class Asteroid : MonoBehaviour
                 float directionAngle = Random.Range(0,360) * Mathf.Deg2Rad;
                 Vector2 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 
-                ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
+                ast1.GetComponent<Rigidbody2D>().AddForce(directionVec * speedSmallAsteroid, ForceMode2D.Impulse);
                 
                 directionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
                 directionVec = new Vector2(Mathf.Cos(directionAngle), Mathf.Sin(directionAngle));
                 
-                ast2.GetComponent<Rigidbody2D>().AddForce(directionVec * 2, ForceMode2D.Impulse);
+                ast2.GetComponent<Rigidbody2D>().AddForce(directionVec * speedSmallAsteroid, ForceMode2D.Impulse);
                 
                 splitOnce = true;
             }

@@ -18,7 +18,7 @@ public class TripleShot : MonoBehaviour
     private void OnBecameInvisible()
     {
         Vector3 position = transform.position;
-        Vector3 tripleShotColliderSize = GetComponent<Collider2D>().bounds.size;
+        Vector3 tripleShotColliderSize = GetComponent<Collider2D>().bounds.extents;
         
         if (position.x - tripleShotColliderSize.x  < ScreenUtils.ScreenLeft || position.x + tripleShotColliderSize.x > ScreenUtils.ScreenRight)
         {
