@@ -70,8 +70,13 @@ This is a space-themed shooter game project, built as part of my coursework for 
 
 ## Iteration 9:
 - Bullets no longer screen wrap
-- Power ups is now a resource, user can choose when to use it.
-- added incremental difficulty as time passes which increases spawn rate and speed of asteroids.
+- Power ups are now a resource, users can choose when to use them.
+- added incremental difficulty as time passes, which increases the  spawn rate and speed of asteroids.
+
+## Final Iteration:
+- Changed background to lean more into dark theme
+- Added UI elements: Added main menu & game over screens. Added various UI buttons. Taken from a free-to-use asset pack.
+- Credits of asset pack: https://free-game-assets.itch.io/free-space-shooter-game-user-interface
 
 ## Features (Final Version)
 
@@ -80,7 +85,7 @@ This is a space-themed shooter game project, built as part of my coursework for 
 ## Credits
 
 - Developed by: [Agniprabha Ganguly]
-- Based on instructions from Coursera's University of Colorado specialization.
+- Based on instructions from Coursera's University of Colorado specialisation.
 - Instructor: Dr. Tim "Dr. T" Chamillard
 - Asteroid mechanics inspired by the original Atari Asteroids arcade game.
 
