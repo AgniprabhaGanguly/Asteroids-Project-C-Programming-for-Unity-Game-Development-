@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class Ship : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
+    
     private Timer shootDelay;
     
     private Rigidbody2D shipRb;
@@ -198,10 +201,7 @@ public class Ship : MonoBehaviour
             HealthScript.Instance.TakeDamage(50);
             if (HealthScript.Instance.Health <= 0)
             {
-                GameTimer.Instance.StopStopwatch();
-                Instantiate(shipExplosion, transform.position, Quaternion.identity);
-                AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
-                Destroy(gameObject);
+                destroyShip();
             }
         }
         else if (other.gameObject.CompareTag("S_Asteroid"))
@@ -209,12 +209,19 @@ public class Ship : MonoBehaviour
             HealthScript.Instance.TakeDamage(25);
             if (HealthScript.Instance.Health <= 0)
             {
-                GameTimer.Instance.StopStopwatch();
-                Instantiate(shipExplosion, transform.position, Quaternion.identity);
-                AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
-                Destroy(gameObject);
+                destroyShip();
             }
         }
+    }
+
+    private void destroyShip()
+    {
+        GameTimer.Instance.StopStopwatch();
+        Instantiate(shipExplosion, transform.position, Quaternion.identity);
+        AudioManager.Instance.PlaySoundFX(shipExplosionFX, transform, 1f);
+        Destroy(gameObject);
+        gameManager.GameOver();
+        gameManager.updateScore();
     }
     
     //for powerups
