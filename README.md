@@ -65,8 +65,13 @@ This is a space-themed shooter game project, built as part of my coursework for 
 - added triple-shot power-up based on score accumulated
 - Problem faced & solutions when adding triple-shot power-up feature:
   - Accessing the duration of the triple-shot with ship.cs script which shoots the bullets. Fixed by adding a tripleshot.cs script to the gameobject (adding screen wrap + duration)
-  - Using a boolean such that multiple power shots aren't instantiated
+  - Using a boolean such that multiple triple shots aren't instantiated
   - Multiple bullet collides with a single asteroid making it split more than once. Fix: Added collision code on Asteroid instead of bullet (made a bool to make it destroy once)
+
+## Iteration 9:
+- Bullets no longer screen wrap
+- Power ups is now a resource, user can choose when to use it.
+- added incremental difficulty as time passes which increases spawn rate and speed of asteroids.
 
 ## Features (Final Version)
 
